@@ -25,7 +25,8 @@
     "react-responsive": "^10.0.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.168.0"
+    "three": "^0.168.0",
+    "three-plain-animator": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -4,6 +4,13 @@ import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from 'three';
 import CanvasLoader from './CanvasLoader';
 import PsxTv from './models/PsxTv';
+import VendingMachine from './models/VenidngMachine';
+import { gifs } from '@/constants';
+
+export interface PsxTvProps{
+	args: JSX.IntrinsicElements['group'];
+	src: string;
+}
 
 const Hero = () => {
 
@@ -17,13 +24,14 @@ const Hero = () => {
 			<p className='pt-2 text-gray_gradient md:text-lg'>Welcome to my world</p>
 		</div>
 
-		<div className='flex flex-col justify-center items-center w-full h-full absolute inset-0'>
+		<div className='flex flex-col justify-center items-center w-full h-full absolute inset-0 pt-28'>
 			<Canvas camera={camera} className='w-full h-full'>
 				<Suspense fallback={<CanvasLoader />}>
 					<ambientLight intensity={1}/>
-					<PsxTv scale={7} rotation={[0,0.25,0,'XYZ']} position={[0, 3, 0]}/>
-					<PsxTv scale={5} rotation={[0,0.6,0,'XYZ']} position={[3, 0, 0]}/>
-					<PsxTv scale={5} rotation={[0,-0.9,0,'XYZ']} position={[-2, 0, 0]}/>
+					{gifs.map(({src, position, rotation, scale}) => (
+						<PsxTv key={src} scale={scale} rotation={rotation} position={position} src={src}/>
+					))}
+					<VendingMachine scale={7} position={[-10,0,3]} rotation={[0,1,0,'XYZ']}/>
 				</Suspense>
 			</Canvas>
 		</div>
