@@ -1,10 +1,11 @@
+import { tvType } from '@/components/models/PsxTv';
 import * as THREE from 'three'
 
 export const navLinks = [
 	{
 	  id: 1,
 	  name: 'Home',
-	  href: '#home',
+	  href: '/',
 	},
 	{
 	  id: 2,
@@ -289,19 +290,11 @@ export const navLinks = [
 	},
   ];
 
-
-interface Gif{
-	src: string;
-	position: THREE.Vector3;
-	rotation: THREE.Euler;
-	scale: number;
-}
-
-export const gifs : Gif[] =[
+export const gifs : tvType[] =[
 	{
 		src:'/about.png',
-		position: new THREE.Vector3(0, 2.4, 2),
-		rotation: new THREE.Euler(0,0.25,0,'XYZ'),
+		position: new THREE.Vector3(0, 2, 2),
+		rotation: new THREE.Euler(-0.15,0.25,0,'XYZ'),
 		scale: 9,
 	},
 	{

@@ -1,6 +1,7 @@
 "use client";
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants';
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi';
 
@@ -10,10 +11,10 @@ function NavItems() {
 	<ul className='nav-ul'>
 		{navLinks.map(({name, id, href}) => (
 			<li key={id} className='nav-li'>
-				<a href={href} className='nav-li_a group text-3xl'>
+				<Link href={href} className='nav-li_a group text-3xl'>
 					{name}
 				<span className='max-w-0 block bg-white group-hover:max-w-full transition-all h-[0.5px]'></span>
-				</a>
+				</Link>
 			</li>
 		))}
 	</ul>)
