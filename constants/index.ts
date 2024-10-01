@@ -293,19 +293,19 @@ export const navLinks = [
 export const gifs : tvType[] =[
 	{
 		src:'/about.png',
-		position: new THREE.Vector3(0, 2, 2),
+		position: new THREE.Vector3(0, 3, 2),
 		rotation: new THREE.Euler(-0.15,0.25,0,'XYZ'),
-		scale: 9,
+		scale: 11,
 	},
 	{
 		src:'/contacts.png',
-		position: new THREE.Vector3(3.5, -3, 2),
+		position: new THREE.Vector3(4, -3, 2),
 		rotation: new THREE.Euler(0,0.6,0,'XYZ'),
-		scale: 9,
+		scale: 11,
 	}, 
 	{
 		src:'/experience.png',
-		position: new THREE.Vector3(-3, -3, 1.3),
+		position: new THREE.Vector3(-3.5, -3, 1.3),
 		rotation: new THREE.Euler(0,-0.7,0,'XYZ'),
-		scale: 9,
+		scale: 11,
 	}]
