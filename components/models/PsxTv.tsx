@@ -10,9 +10,7 @@ import { isMobile } from "react-device-detect";
 import studio from '@theatre/studio'
 import { getProject, types } from "@theatre/core";
 studio.initialize();
-import extension from '@theatre/r3f/dist/extension';
-studio.extend(extension);
-import { SheetProvider, editable as e, } from '@theatre/r3f';
+import { SheetProvider, editable as e, editable, } from '@theatre/r3f';
 
 
 type GLTFResult = GLTF & {
@@ -24,7 +22,6 @@ type GLTFResult = GLTF & {
   };
 };
 
-const LOWLIGHT = 1;
 
 export interface tvType {
   scale: number;
@@ -52,12 +49,11 @@ export default function PsxTv({
 }: tvType) {
   //decl
   
-  const demoSheet = getProject('Demo Project').sheet('Demo Sheet');
-  
-  const colorRef = useRef(new THREE.Color("#AAAAAA"));
-  const intensityRef = useRef(LOWLIGHT);
+  const colorRef = useRef(new THREE.Color("#AAAAFF"));
+  const intensityRef = useRef(0.1);
   const [doRender, setDoRender] = useState(false);
   
+
   const { nodes, materials } = useGLTF("/psx_old_tv/scene.gltf") as GLTFResult;
   const tvRef = useRef<THREE.Mesh>(null!);
 
@@ -72,13 +68,16 @@ export default function PsxTv({
       position={position} 
       rotation={rotation} 
       dispose={null} >
+      <group>
         <directionalLight
         intensity={intensityRef.current}
         color={colorRef.current}
-        position={(idx === 0 ? [0, 0, 0] : [0, -0.15, -0.15])}
-        rotation={[0, 0, 0]}/>
-      <SheetProvider sheet={demoSheet}>
-      <e.mesh theatreKey="aaaaaaa"
+        target={camera.current}
+        position={(idx === 0 ? [0,2,0] : [0,3,0.3])}
+        >
+        </directionalLight>
+      </group>
+      <mesh 
         ref={tvRef}
         geometry={nodes.Object_4.geometry}
         material={materials.M_PSX_TV}
@@ -126,8 +125,7 @@ export default function PsxTv({
           scale={mode === 3 ? 0.54 : 0}
           position={new THREE.Vector3(0, 0.043, 0.24)}
           />
-      </e.mesh>
-      </SheetProvider>
+      </mesh>
     </group>
   );
 }

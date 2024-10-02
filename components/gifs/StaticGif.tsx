@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import { PlainAnimator } from "three-plain-animator/lib/plain-animator";
 import * as THREE from "three";
 
-const LOWLIGHT = 1;
-const STRONGLIGHT = 5;
+const LOWLIGHT = 0.5;
+const STRONGLIGHT = 0.8;
 
 function StaticGif({
   textureSrc,
@@ -50,7 +50,7 @@ function StaticGif({
   }
 
   function outHover() {
-    colorRef.current = new THREE.Color("#AAAAAA");
+    colorRef.current = new THREE.Color("#AAAAFF");
     intensityRef.current = LOWLIGHT;
     isHover.current = -1;
   }

@@ -42,6 +42,69 @@ export function Floor(props: JSX.IntrinsicElements['group']) {
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[0.01, 0.01, 0.01]}
       />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[-30, 0, 25]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[3.562, 0, 25]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[3.562 + 33, 0, 25]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[3.562 + 33, 0, 0.765]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[3.562, 0, 0.765 -24.4]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[-30, 0, 0.765 -24.4]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['Box001_Material_#44_0'].geometry}
+        material={materials.Material_44}
+        position={[3.562 + 33, 0, 0.765 -24.4]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
     </group>
   )
 }

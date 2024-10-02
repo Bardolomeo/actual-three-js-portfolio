@@ -11,6 +11,13 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { Fridge } from "./models/Fridge";
 import { Floor } from "./models/Floor";
 import { OrbitControls } from "@react-three/drei";
+import { SheetProvider } from "@theatre/r3f";
+import { getProject } from "@theatre/core";
+import studio from "@theatre/studio";
+import extension from '@theatre/r3f/dist/extension';
+
+studio.initialize();
+studio.extend(extension);
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -73,7 +80,7 @@ const CanvasIndex = () => {
     setTvIdx(idx + 1);
   }
 
-
+  const demoSheet = getProject('Demo Project').sheet('Demo Sheet');
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
@@ -82,6 +89,7 @@ const CanvasIndex = () => {
       >
         <Canvas className="touch-none" gl={{ preserveDrawingBuffer: true }} camera={mainCamera}>
           <Suspense fallback={<CanvasLoader />}>
+          <SheetProvider sheet={demoSheet}>
             {/* <AnimatedCameras /> */}
             <ambientLight intensity={0.5} />
             {gifs.map(({ src, position, rotation, scale }, idx) => (
@@ -102,6 +110,7 @@ const CanvasIndex = () => {
             <Fridge scale={2} position={[15, 0, -10]} rotation={[0, -0.4, 0]}/>
             <Floor position={[0,-3.1,0]}/>
             <OrbitControls/>
+            </SheetProvider>
           </Suspense>
         </Canvas>
         {tvIdx != 0 && (
