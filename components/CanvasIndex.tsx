@@ -15,6 +15,9 @@ import { SheetProvider } from "@theatre/r3f";
 import { getProject } from "@theatre/core";
 import studio from "@theatre/studio";
 import extension from '@theatre/r3f/dist/extension';
+import { PokerRoom, Walls } from "./models/Walls";
+import { Sofa } from "./models/Sofa";
+import { Lamp } from "./models/Lamp";
 
 studio.initialize();
 studio.extend(extension);
@@ -54,14 +57,14 @@ const CanvasIndex = () => {
       return;
     if (idx === 0)
     {
-      gsap.to(mainCamera.position, {z: 15, y: 10, x: 2, duration: 1});
-      gsap.to(mainCamera.rotation, {y: 0.15})
+      gsap.to(mainCamera.position, {z: 12, y: 12, x: 2, duration: 1});
+      gsap.to(mainCamera.rotation, {y: 0.15, x: 0})
     }
     if (idx === 1)
       {
         gsap.to(
           mainCamera.position,
-          {x: 12, y: -1, z: 15, duration: 1}
+          {x: 12, y: -1, z: 10, duration: 1}
         )
         gsap.to(
           mainCamera.rotation, 
@@ -71,7 +74,7 @@ const CanvasIndex = () => {
     {
       gsap.to(
         mainCamera.position,
-        {x: -15, y: -1, z: 15, duration: 1}
+        {x: -15, y: -1, z: 10, duration: 1}
       )
       gsap.to(
         mainCamera.rotation, 
@@ -108,7 +111,10 @@ const CanvasIndex = () => {
             ))}
             {/* {!isMobile && <VendingMachine scale={2} position={[-3,0,3]} rotation={[0,1,0,'XYZ']}/>} */}
             <Fridge scale={2} position={[15, 0, -10]} rotation={[0, -0.4, 0]}/>
+            <Sofa/>
+            <Lamp/>
             <Floor position={[0,-3.1,0]}/>
+            <Walls/>
             <OrbitControls/>
             </SheetProvider>
           </Suspense>

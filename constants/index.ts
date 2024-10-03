@@ -293,39 +293,44 @@ export const navLinks = [
 export const gifs : tvType[] =[
 	{
 		src:'/about.png',
-		position: new THREE.Vector3(0, 3, 2),
-		rotation: new THREE.Euler(-0.15,0.25,0,'XYZ'),
-		scale: 11,
+		position: new THREE.Vector3(0, 2.45, 1.5),
+		rotation: new THREE.Euler(-0.15,0.21,0,'XYZ'),
+		scale: 10,
 	},
 	{
 		src:'/contacts.png',
-		position: new THREE.Vector3(4, -3, 2),
+		position: new THREE.Vector3(3.5, -3, 2),
 		rotation: new THREE.Euler(0,0.6,0,'XYZ'),
-		scale: 11,
+		scale: 10,
 	}, 
 	{
 		src:'/experience.png',
-		position: new THREE.Vector3(-3.5, -3, 1.3),
+		position: new THREE.Vector3(-3, -3, 1.3),
 		rotation: new THREE.Euler(0,-0.7,0,'XYZ'),
-		scale: 11,
+		scale: 10,
 	}]
 
-// export const gifsMobile : tvType[] =[
-// 		{
-// 			src:'/about.png',
-// 			position: new THREE.Vector3(0, 2.5, 2.1),
-// 			rotation: new THREE.Euler(-0.15,0.25,0,'XYZ'),
-// 			scale: 8,
-// 		},
-// 		{
-// 			src:'/contacts.png',
-// 			position: new THREE.Vector3(2.5, -2, 2),
-// 			rotation: new THREE.Euler(0,0.6,0,'XYZ'),
-// 			scale: 8,
-// 		}, 
-// 		{
-// 			src:'/experience.png',
-// 			position: new THREE.Vector3(-2.5, -2, 1.3),
-// 			rotation: new THREE.Euler(0,-0.7,0,'XYZ'),
-// 			scale: 8,
-// 		}]
+export const walls = [{
+	id: 1,
+	position: new THREE.Vector3(-19.960835552850295,11.363247568298448,5.760119888330047),
+	rotation: new THREE.Euler(-1.55, 0, 1.502195822821216),
+	scale: new THREE.Vector3(20, 20, 20)
+},
+{
+	id: 2,
+	position: new THREE.Vector3(0.5939347749708483, 16.25543151962497, -14.64222486126846),
+	rotation: new THREE.Euler(1.57458849419002, 0, 3.1414482948130167),
+	scale: new THREE.Vector3(20, 20, 20)
+},
+{
+	id: 3,
+	position: new THREE.Vector3(20.56943375705095, 14.961379910739545, 4.56143611128388),
+	rotation: new THREE.Euler(1.52795113076259, 0, 1.570796326794892),
+	scale: new THREE.Vector3(20, 20, 20)
+}]
+
+export const sofa = {
+	position: new THREE.Vector3(-110.47778155141646, -17.72275938350092, -10.376032236705408),
+	rotation: new THREE.Euler(1.658402230547338, -1.4891410219088936, 0.1),
+	scale: new THREE.Vector3(1.3, 1.3, 1.3)
+}

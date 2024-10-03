@@ -10,8 +10,8 @@ function NavItems() {
 	return (
 	<ul className='nav-ul'>
 		{navLinks.map(({name, id, href}) => (
-			<li key={id} className='nav-li'>
-				<Link href={href} className='nav-li_a group text-3xl'>
+			<li key={id} className='nav-li z-50'>
+				<Link href={href} className='nav-li_a group text-3xl z-50'>
 					{name}
 				<span className='max-w-0 block bg-white group-hover:max-w-full transition-all h-[0.5px]'></span>
 				</Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
 	<div className="max-w-7xl z-50 mt-8 mx-4 sm:mt-2 flex justify-between">
 		<div className='flex flex-col items-center justify-center'>
 			<a href='\' className='group'>
-				<header className='text-neutral-200 lg:text-3xl text-2xl group-hover:text-white transition-color'>
+				<header className='text-neutral-200 lg:text-3xl text-2xl group-hover:text-white transition-color z-50'>
 					Bard
 				</header>
 				<span className='max-w-0 group-hover:max-w-full block bg-white transition-all h-0.5'></span>

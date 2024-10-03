@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import { PlainAnimator } from "three-plain-animator/lib/plain-animator";
 import * as THREE from "three";
 
-const LOWLIGHT = 0.5;
-const STRONGLIGHT = 0.8;
+const LOWLIGHT = 20;
+const STRONGLIGHT = 30;
 
 function StaticGif({
   textureSrc,

@@ -32,7 +32,7 @@ export interface tvType {
   mode?: number;
   mobile?: boolean;
   idx?: number;
-  camera: React.MutableRefObject<THREE.PerspectiveCamera>;
+  camera?: React.MutableRefObject<THREE.PerspectiveCamera>;
 }
 
 export default function PsxTv({
@@ -50,7 +50,7 @@ export default function PsxTv({
   //decl
   
   const colorRef = useRef(new THREE.Color("#AAAAFF"));
-  const intensityRef = useRef(0.1);
+  const intensityRef = useRef(20);
   const [doRender, setDoRender] = useState(false);
   
 
@@ -68,15 +68,15 @@ export default function PsxTv({
       position={position} 
       rotation={rotation} 
       dispose={null} >
-      <group>
-        <directionalLight
+        <rectAreaLight
         intensity={intensityRef.current}
         color={colorRef.current}
-        target={camera.current}
-        position={(idx === 0 ? [0,2,0] : [0,3,0.3])}
+        height={7.5}
+        width={7.5}
+        position={[0,0.1,(0.25)]}
+        rotation={[Math.PI ,0, 0]}
         >
-        </directionalLight>
-      </group>
+        </rectAreaLight>
       <mesh 
         ref={tvRef}
         geometry={nodes.Object_4.geometry}
