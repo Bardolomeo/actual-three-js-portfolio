@@ -7,10 +7,7 @@ import { ThreeEvent, useFrame } from "@react-three/fiber";
 import TvGif from "../gifs/TvGif";
 import StaticGif from "../gifs/StaticGif";
 import { isMobile } from "react-device-detect";
-import studio from '@theatre/studio'
 import { getProject, types } from "@theatre/core";
-studio.initialize();
-import { SheetProvider, editable as e, editable, } from '@theatre/r3f';
 
 
 type GLTFResult = GLTF & {

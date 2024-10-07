@@ -7,10 +7,12 @@ Title: Ikea Lamp
 */
 
 import * as THREE from 'three'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { editable as e } from '@theatre/r3f'
+import { lamp } from '@/constants'
+import gsap from 'gsap'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,21 +23,37 @@ type GLTFResult = GLTF & {
   }
 }
 
+
 export function Lamp(props: JSX.IntrinsicElements['group']) {
+  const lampLightRef = useRef(null!);
+  
+  useEffect(() =>  {gsap.timeline({repeat: Infinity}).
+    to(lampLightRef.current, {intensity: 0}).
+    to(lampLightRef.current, {intensity: lamp.intensity})}, [])
+
+
   const { nodes, materials } = useGLTF('/Lamp/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
+          <pointLight 
+            position={lamp.lightPosition}
+            intensity={lamp.intensity}
+            decay={lamp.decay}
+            color={lamp.color}
+            distance={lamp.distance}
+            ref={lampLightRef}/>
           <e.mesh
-		  	theatreKey='lamp'
+		  	    theatreKey='lamp'
             castShadow
             receiveShadow
             geometry={nodes.defaultMaterial.geometry}
             material={materials.IkeaLamp}
-            position={[-60.424, 0, -139.575]}
-            rotation={[-Math.PI / 2, 0, 0]}
-          />
+            position={lamp.position}
+            rotation={lamp.rotation}
+            scale={lamp.scale}>
+          </e.mesh>
         </group>
       </group>
     </group>
