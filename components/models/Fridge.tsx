@@ -10,6 +10,7 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { editable as e } from '@theatre/r3f'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -45,6 +46,10 @@ export function Fridge(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>
+        <rectAreaLight 
+          args={[new THREE.Color('#00ff99'), 10, 1, 10]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0,380,100]}/>
         <mesh
           castShadow
           receiveShadow

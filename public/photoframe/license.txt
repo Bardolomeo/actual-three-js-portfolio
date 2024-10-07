@@ -1,0 +1,8 @@
+Model Information:
+* title:	PhotoFrame
+* source:	https://sketchfab.com/3d-models/photoframe-ae37b35ea4c7406885acea192024fd44
+* author:	Twpic (https://sketchfab.com/TWPIC)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

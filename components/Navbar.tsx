@@ -2,25 +2,23 @@
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { MutableRefObject, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi';
 
 function NavItems() {
 	
 	return (
 	<ul className='nav-ul'>
-		{navLinks.map(({name, id, href}) => (
-			<li key={id} className='nav-li z-50'>
-				<Link href={href} className='nav-li_a group text-3xl z-50'>
+		{navLinks.map(({name, id}) => (
+			<li key={id} className='nav-li z-50' onClick={() => ref.current = id}>
 					{name}
 				<span className='max-w-0 block bg-white group-hover:max-w-full transition-all h-[0.5px]'></span>
-				</Link>
 			</li>
 		))}
 	</ul>)
 }
 
-const Navbar = () => {
+const Navbar = React.forwardRef<HTMLDivElement>(() => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
@@ -38,7 +36,7 @@ const Navbar = () => {
 		</Button>
 		<div className='hidden max-h-0 sm:flex sm:max-h-full'>
 			<nav>
-				<NavItems />
+				<NavItems/>
 			</nav>
 		</div>
 		<div className={`nav-sidebar mt-12 ${menuOpen ? 'max-h-full' : 'max-h-0'}`}>
@@ -48,6 +46,6 @@ const Navbar = () => {
 		</div>
 	</div>
   )
-}
+})
 
 export default Navbar

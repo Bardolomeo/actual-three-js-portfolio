@@ -1,0 +1,8 @@
+Model Information:
+* title:	Framed_Image
+* source:	https://sketchfab.com/3d-models/framed-image-bd610faedd544aa3bda3166d44afae57
+* author:	Lori (https://sketchfab.com/derwassermagier)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

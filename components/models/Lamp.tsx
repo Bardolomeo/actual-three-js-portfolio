@@ -7,11 +7,11 @@ Title: Ikea Lamp
 */
 
 import * as THREE from 'three'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { editable as e } from '@theatre/r3f'
-import { lamp } from '@/constants'
+import { colors, lamp } from '@/constants'
 import gsap from 'gsap'
 
 type GLTFResult = GLTF & {
@@ -25,35 +25,61 @@ type GLTFResult = GLTF & {
 
 
 export function Lamp(props: JSX.IntrinsicElements['group']) {
-  const lampLightRef = useRef(null!);
+  const [colorIndex, setColorIndex] = useState(0);
+  const lampInnerLightRef = useRef(null!);
+  const lampOuterLightRef = useRef(null!);
+  const colorLightRef = useRef(lamp.color);
+  const tlInnerLight = useRef(gsap.timeline());
+  const tlOuterLight = useRef(gsap.timeline());
   
-  useEffect(() =>  {gsap.timeline({repeat: Infinity}).
-    to(lampLightRef.current, {intensity: 0}).
-    to(lampLightRef.current, {intensity: lamp.intensity})}, [])
 
+  useEffect(() =>  {
+    tlInnerLight.current = gsap.timeline({repeat: Infinity, repeatDelay: 0.5}).
+    to(lampInnerLightRef.current, {intensity: 0, ease: "none", duration: 0.1}).
+    to(lampInnerLightRef.current, {intensity: lamp.intensity, duration: 0.1})
+    tlOuterLight.current = gsap.timeline({repeat: Infinity, repeatDelay: 0.5}).
+    to(lampOuterLightRef.current, {intensity: 0, ease: "none", duration: 0.1}).
+    to(lampOuterLightRef.current, {intensity: 0.2, duration: 0.1});
+  }, [])
+
+
+  function changeLampColor() {
+    setColorIndex((prev: number) => {++prev; if (prev > 5) prev = 0; return prev;})
+  }
+  
 
   const { nodes, materials } = useGLTF('/Lamp/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
-          <pointLight 
+          <pointLight
             position={lamp.lightPosition}
             intensity={lamp.intensity}
             decay={lamp.decay}
-            color={lamp.color}
+            color={colors[colorIndex]}
             distance={lamp.distance}
-            ref={lampLightRef}/>
-          <e.mesh
-		  	    theatreKey='lamp'
+            ref={lampInnerLightRef}/>
+          <pointLight 
+          intensity={0.2}
+          color={colors[colorIndex]}
+          position={[-17,10.27,-6.6]}
+          ref={lampOuterLightRef}/>
+          <mesh
             castShadow
             receiveShadow
             geometry={nodes.defaultMaterial.geometry}
             material={materials.IkeaLamp}
             position={lamp.position}
             rotation={lamp.rotation}
-            scale={lamp.scale}>
-          </e.mesh>
+            scale={lamp.scale}/>
+          <mesh
+          position={[-16.83,8.32,-9.72]}
+          rotation={[0,0,0.768]}
+          onClick={changeLampColor}
+          visible={false}>
+            <boxGeometry args={[4, 4, 4]}/>
+          </mesh>
         </group>
       </group>
     </group>

@@ -31,9 +31,8 @@ export function Walls(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/shapespark_rugs-set.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
-      {walls.map((wall) => <e.mesh
+      {walls.map((wall) => <mesh
 	  	  key={wall.id}
-        theatreKey={`wall_${wall.id}`}
         castShadow
         receiveShadow
         geometry={nodes.rug_02.geometry}

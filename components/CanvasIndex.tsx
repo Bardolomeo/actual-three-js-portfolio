@@ -15,12 +15,14 @@ import { SheetProvider } from "@theatre/r3f";
 import { getProject } from "@theatre/core";
 import studio from "@theatre/studio";
 import extension from "@theatre/r3f/dist/extension";
-import { PokerRoom, Walls } from "./models/Walls";
+import { Walls } from "./models/Walls";
 import { Sofa } from "./models/Sofa";
 import { Lamp } from "./models/Lamp";
+import { Photoframe } from "./models/Photoframe";
+import { FramedImage } from "./models/FramedImage";
 
-studio.initialize();
-studio.extend(extension);
+// studio.initialize();
+// studio.extend(extension);
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -46,22 +48,22 @@ const CanvasIndex = () => {
         x: 0,
         ease: "none",
       });
-      gsap.to(mainCamera.rotation, { x: -0.3, y: 0 });
+      gsap.to(mainCamera.rotation, { x: -0.3, y: 0, z:0});
     }
   }
 
   function cameraAnimation(idx: number) {
     if (tvIdx != 0) return;
     if (idx === 0) {
-      gsap.to(mainCamera.position, { z: 12, y: 12, x: 2, duration: 1 });
-      gsap.to(mainCamera.rotation, { y: 0.15, x: 0 });
+      gsap.to(mainCamera.position, { z: 12, y: 10, x: 2, duration: 1 });
+      gsap.to(mainCamera.rotation, { y: 0.15, x: -0.5, z: 0.07});
     }
     if (idx === 1) {
       gsap.to(mainCamera.position, { x: 12, y: -1, z: 10, duration: 1 });
       gsap.to(mainCamera.rotation, { y: 0.5, x: 0, duration: 1 });
     }
     if (idx === 2) {
-      gsap.to(mainCamera.position, { x: -15, y: -1, z: 10, duration: 1 });
+      gsap.to(mainCamera.position, { x: -14, y: -1, z: 10, duration: 1 });
       gsap.to(mainCamera.rotation, { y: -0.7, x: 0, duration: 1 });
     }
     setTvIdx(idx + 1);
@@ -109,7 +111,8 @@ const CanvasIndex = () => {
               <Lamp />
               <Floor position={[0, -3.1, 0]} />
               <Walls />
-              <OrbitControls />
+              <Photoframe />
+              <FramedImage />
             </SheetProvider>
           </Suspense>
         </Canvas>

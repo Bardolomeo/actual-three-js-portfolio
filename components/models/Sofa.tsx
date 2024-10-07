@@ -19,8 +19,7 @@ export function Sofa(props: JSX.IntrinsicElements['group']) {
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={16.027}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <e.mesh
-		  	theatreKey='sofa'
+          <mesh
             castShadow
             receiveShadow
             geometry={nodes.Cilindro011_Materiais_0.geometry}

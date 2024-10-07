@@ -1,3 +1,4 @@
+import CanvasIndex from '@/components/CanvasIndex';
 import { tvType } from '@/components/models/PsxTv';
 import * as THREE from 'three'
 
@@ -330,7 +331,7 @@ export const walls = [{
 }]
 
 export const sofa = {
-	position: new THREE.Vector3(-110.47778155141646, -17.72275938350092, -10.376032236705408),
+	position: new THREE.Vector3(-110.47778155141646, -17.72275938350092, -25.376032236705408),
 	rotation: new THREE.Euler(1.658402230547338, -1.4891410219088936, 0.1),
 	scale: new THREE.Vector3(1.3, 1.3, 1.3)
 }
@@ -340,8 +341,17 @@ export const lamp = {
 	rotation: new THREE.Euler(-1.5185602811212915, -0.6784878182966164, 0.028139885768538483),
 	scale: new THREE.Vector3(0.1, 0.1, 0.1),
 	lightPosition: new THREE.Vector3(-15.676828318989458, 7.948689658665785, -9.838563467601094),
-	intensity: 7.5,
-	distance: 50,
-	decay: 1.3,
-	color: new THREE.Color('#be9829'),
+	intensity: 5,
+	distance: 30,
+	decay: 1.6,
+	color: new THREE.Color('#ffffff'),
 }
+
+export const colors = [
+	(new THREE.Color('#ffffff')),
+	(new THREE.Color('#ff0000')), 
+	(new THREE.	Color('#ff9900')), 
+	(new THREE.Color('#ffff00')), 
+	(new THREE.Color('#00ff00')),
+	(new THREE.Color('#00ff99')),
+	(new THREE.Color('#00ffff'))]
