@@ -10,7 +10,8 @@ const config: Config = {
   theme: {
   	extend: {
   		fontFamily: {
-  			inclusive: ['Inclusive Sans', 'sans-serif']
+  			inclusive: ['Inclusive Sans', 'sans-serif'],
+			ocra: ["ocra", "sans"]
   		},
   		colors: {
   			black: {

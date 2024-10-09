@@ -1,5 +1,5 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import React, { Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 import PsxTv from "./models/PsxTv";
 import CanvasLoader from "./CanvasLoader";
 import { gifs, gifsMobile, lamp } from "@/constants";
@@ -39,6 +39,11 @@ const CanvasIndex = () => {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
   cameraRef.current = mainCamera;
 
+  function Precompile(){
+    const {scene, camera, gl} = useThree();
+    useLayoutEffect(() => void gl.compile(scene, camera), []);
+    return null;
+  }
   function cameraReset() {
     if (tvIdx != 0) {
       setTvIdx(0);
@@ -55,7 +60,7 @@ const CanvasIndex = () => {
   function cameraAnimation(idx: number) {
     if (tvIdx != 0) return;
     if (idx === 0) {
-      gsap.to(mainCamera.position, { z: 12, y: 10, x: 2, duration: 1 });
+      gsap.to(mainCamera.position, { z: 16, y: 12, x: 2, duration: 1 });
       gsap.to(mainCamera.rotation, { y: 0.15, x: -0.5, z: 0.07});
     }
     if (idx === 1) {
@@ -99,8 +104,8 @@ const CanvasIndex = () => {
                   mode={tvIdx}
                   mobile={isMobile}
                   camera={cameraRef}
-                />
-              ))}
+                  />
+                ))}
               {/* {!isMobile && <VendingMachine scale={2} position={[-3,0,3]} rotation={[0,1,0,'XYZ']}/>} */}
               <Fridge
                 scale={2}
@@ -114,6 +119,8 @@ const CanvasIndex = () => {
               <Photoframe />
               <FramedImage />
             </SheetProvider>
+            <Precompile/>
+            <OrbitControls/>
           </Suspense>
         </Canvas>
         {tvIdx != 0 && (

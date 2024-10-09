@@ -1,13 +1,15 @@
 "use client";
 import * as THREE from "three";
 import React, { useRef, useState } from "react";
-import { Image, useGLTF } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
+import { Html, Image, useGLTF } from "@react-three/drei";
+import { GLTF, OrbitControls } from "three-stdlib";
 import { ThreeEvent, useFrame } from "@react-three/fiber";
 import TvGif from "../gifs/TvGif";
 import StaticGif from "../gifs/StaticGif";
 import { isMobile } from "react-device-detect";
 import { getProject, types } from "@theatre/core";
+import { Euler } from "three";
+import { TypeAnimation } from 'react-type-animation';
 
 
 type GLTFResult = GLTF & {
@@ -18,6 +20,8 @@ type GLTFResult = GLTF & {
     M_PSX_TV: THREE.MeshStandardMaterial;
   };
 };
+
+const CURSOR_CLASS_NAME = 'custom-type-animation-cursor'; 
 
 
 export interface tvType {
@@ -31,6 +35,15 @@ export interface tvType {
   idx?: number;
   camera?: React.MutableRefObject<THREE.PerspectiveCamera>;
 }
+function curveRemapUV(uv: THREE.Vector3)
+{
+    // as we near the edge of our screen apply greater distortion using a cubic function
+    uv = new THREE.Vector3(uv.x * 2.0 - 1.0, uv.y * 2.0 - 1.0, 0);
+    const offset = abs(uv.yx) / vec2(curvature.x, curvature.y);
+    uv = uv + uv * offset * offset;
+    uv = uv * 0.5 + 0.5;
+    return uv;
+}
 
 export default function PsxTv({
   //def
@@ -42,7 +55,6 @@ export default function PsxTv({
   mode,
   mobile,
   idx,
-  camera
 }: tvType) {
   //decl
   
@@ -54,10 +66,6 @@ export default function PsxTv({
   const { nodes, materials } = useGLTF("/psx_old_tv/scene.gltf") as GLTFResult;
   const tvRef = useRef<THREE.Mesh>(null!);
 
-  useFrame(() => {
-    if (isMobile)
-      camera.current.position.z = 45;
-  })
 
   return (
     <group 
@@ -107,11 +115,38 @@ export default function PsxTv({
           iconSize={mode === 0 ? [0.55, 0.5, 0.005] : [0, 0, 0]}
           idx={idx}
           />
-        <Image
-          url="/shadow-gun.jpeg"
-          scale={mode === 1 ? 0.55 : 0}
-          position={new THREE.Vector3(0, 0.03, 0.24)}
+        {mode !== 0 && idx === 0 && <Html
+          center
+          scale={mode === 1 ? 1 : 0}
+          transform
+          position={new THREE.Vector3(0.004, 0.024, 0.18)}
+          rotation={new Euler(0,0,0, 'XYZ')}
+          distanceFactor={2}>
+          <div className={`w-28 h-[6.30rem] bg-[#010a0a] text-[#93672e] flex flex-col text-sm font-ocra px-2 pt-2 pb-1`}>
+          <TypeAnimation
+            className='font-bold text-[0.75rem] font-ocra'
+            sequence={[
+            '// ABOUT ME //'
+            ]}
+            wrapper="span"
+            cursor={false}
+            speed={1}
+            style={{fontSize: '0.75rem', fontFamily: 'ocra'}}
           />
+          <TypeAnimation
+            className="leading-[0rem]"
+            sequence={[
+            `> I'm a Web Developer based in Florence`,
+            200,
+            `> I'm a Web Developer based in Florence\n\n> My Job is to create digital Experiences`
+            ]}
+            wrapper="span"
+            cursor={false}
+            speed={50}
+            style={{ fontSize: '0.5rem', fontFamily: 'ocra', whiteSpace: 'pre-line', lineHeight: "0.75rem"}}
+          />
+          </div>
+        </Html>}
         <Image
           url="/shadow-edge.png"
           scale={mode === 2 ? 0.52 : 0}

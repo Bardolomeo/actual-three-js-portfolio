@@ -3,6 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'ocra';
+  src: url(/fonts/OCR-a___.ttf);
+}
 
 * {
   scroll-behavior: smooth;
